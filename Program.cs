@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestTask_1
 {
@@ -20,19 +13,27 @@ namespace TestTask_1
 
             int counter = 1;
 
-            for (int i = 0; i < str.Length - 1; i++)
+            for (int i = 0; i < str.Length; i++)
             {
                 s = str[i].ToString();
-                if (str[i] == str[i + 1])
+                try
                 {
-                    counter++;
-                }
-                else
-                {
-                    AddToString();
-                }
+                    if (str[i] == str[i + 1])
+                    {
+                        counter++;
+                    }
+                    else
+                    {
+                        s = str[i].ToString();
+                        AddToString();
+                    }
 
-                if (i == str.Length - 2)
+                    if (i == str.Length - 1)
+                    {
+                        AddToString();
+                    }
+                }
+                catch
                 {
                     AddToString();
                 }
@@ -40,7 +41,10 @@ namespace TestTask_1
 
             void AddToString()
             {
-                resultString += counter.ToString();
+                if (counter > 1)
+                {
+                    resultString += counter.ToString();
+                }
                 resultString += s;
 
                 counter = 1;
